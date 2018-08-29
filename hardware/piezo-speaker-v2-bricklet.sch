@@ -281,31 +281,31 @@ Wire Wire Line
 $Comp
 L tinkerforge:LED D1
 U 1 1 5B869855
-P 1500 4950
-F 0 "D1" H 1500 5165 50  0000 C CNN
-F 1 "blue" H 1500 5074 50  0000 C CNN
-F 2 "D0603F" H 1500 4950 50  0001 C CNN
-F 3 "" H 1500 4950 50  0000 C CNN
-	1    1500 4950
+P 1200 5050
+F 0 "D1" H 1200 5265 50  0000 C CNN
+F 1 "blue" H 1200 5174 50  0000 C CNN
+F 2 "D0603F" H 1200 5050 50  0001 C CNN
+F 3 "" H 1200 5050 50  0000 C CNN
+	1    1200 5050
 	1    0    0    -1  
 $EndComp
 $Comp
 L tinkerforge:3V3 #PWR01
 U 1 1 5B8699BB
-P 900 4650
-F 0 "#PWR01" H 900 4750 40  0001 C CNN
-F 1 "3V3" H 909 4806 40  0000 C CNN
-F 2 "" H 900 4650 60  0000 C CNN
-F 3 "" H 900 4650 60  0000 C CNN
-	1    900  4650
+P 600 4750
+F 0 "#PWR01" H 600 4850 40  0001 C CNN
+F 1 "3V3" H 609 4906 40  0000 C CNN
+F 2 "" H 600 4750 60  0000 C CNN
+F 3 "" H 600 4750 60  0000 C CNN
+	1    600  4750
 	1    0    0    -1  
 $EndComp
 Wire Wire Line
-	1900 4950 1700 4950
+	1600 5050 1400 5050
 Wire Wire Line
-	1300 4950 900  4950
+	1000 5050 600  5050
 Wire Wire Line
-	900  4950 900  4650
+	600  5050 600  4750
 $Comp
 L tinkerforge:LD1117 U2
 U 1 1 5B86C2D2
@@ -436,13 +436,13 @@ Wire Wire Line
 	6300 2650 6300 2500
 Wire Wire Line
 	6400 2500 6400 2650
-Text GLabel 2950 3750 0    39   Input ~ 0
+Text GLabel 2950 4950 0    39   Input ~ 0
 LR-1
-Text GLabel 2950 3850 0    39   Input ~ 0
+Text GLabel 2950 3750 0    39   Input ~ 0
 LR-2
-Text GLabel 2950 4050 0    39   Input ~ 0
+Text GLabel 2950 3850 0    39   Input ~ 0
 LR-3
-Text GLabel 2950 4250 0    39   Input ~ 0
+Text GLabel 2950 4050 0    39   Input ~ 0
 LR-4
 $Comp
 L tinkerforge:LMR62014X U3
@@ -760,13 +760,13 @@ Wire Wire Line
 	8400 5600 8400 5450
 Wire Wire Line
 	8600 5450 8600 5600
-Text GLabel 2950 4350 0    39   Input ~ 0
+Text GLabel 2950 4250 0    39   Input ~ 0
 SU-1
-Text GLabel 2950 4450 0    39   Input ~ 0
+Text GLabel 2950 4350 0    39   Input ~ 0
 SU-2
-Text GLabel 2950 4550 0    39   Input ~ 0
+Text GLabel 2950 4450 0    39   Input ~ 0
 SU-3
-Text GLabel 2950 5050 0    39   Input ~ 0
+Text GLabel 2950 4550 0    39   Input ~ 0
 SU-4
 Text GLabel 2950 5700 0    39   Input ~ 0
 SU-5
@@ -775,16 +775,14 @@ SU-6
 $Comp
 L tinkerforge:R R1
 U 1 1 5B89746E
-P 2150 4950
-F 0 "R1" V 1942 4950 50  0000 C CNN
-F 1 "1k" V 2033 4950 50  0000 C CNN
-F 2 "R0603F" H 2150 4950 60  0001 C CNN
-F 3 "" H 2150 4950 60  0000 C CNN
-	1    2150 4950
+P 1850 5050
+F 0 "R1" V 1642 5050 50  0000 C CNN
+F 1 "1k" V 1733 5050 50  0000 C CNN
+F 2 "R0603F" H 1850 5050 60  0001 C CNN
+F 3 "" H 1850 5050 60  0000 C CNN
+	1    1850 5050
 	0    1    1    0   
 $EndComp
-Wire Wire Line
-	3250 4950 2400 4950
 $Comp
 L tinkerforge:CONN_01X01 P3
 U 1 1 5B89D9E7
@@ -848,8 +846,6 @@ Wire Wire Line
 	2450 6550 2450 6400
 Wire Wire Line
 	2450 6400 2300 6400
-Wire Wire Line
-	2950 5050 3250 5050
 Wire Wire Line
 	3250 5700 2950 5700
 Wire Wire Line
@@ -941,4 +937,52 @@ F 3 "" H 1850 1000 50  0001 C CNN
 $EndComp
 Wire Wire Line
 	1850 1000 1850 1500
+$Comp
+L tinkerforge:DRILL U7
+U 1 1 5B86EC19
+P 11050 6400
+F 0 "U7" H 11100 6450 60  0001 C CNN
+F 1 "DRILL" H 10950 6400 60  0000 L CNN
+F 2 "kicad-libraries:Drill" H 11050 6400 60  0001 C CNN
+F 3 "" H 11050 6400 60  0000 C CNN
+	1    11050 6400
+	1    0    0    -1  
+$EndComp
+$Comp
+L tinkerforge:DRILL U5
+U 1 1 5B86ED29
+P 10750 6400
+F 0 "U5" H 10800 6450 60  0001 C CNN
+F 1 "DRILL" H 10650 6400 60  0000 L CNN
+F 2 "kicad-libraries:Drill" H 10750 6400 60  0001 C CNN
+F 3 "" H 10750 6400 60  0000 C CNN
+	1    10750 6400
+	1    0    0    -1  
+$EndComp
+$Comp
+L tinkerforge:DRILL U6
+U 1 1 5B86EDB1
+P 11050 6200
+F 0 "U6" H 11100 6250 60  0001 C CNN
+F 1 "DRILL" H 10950 6200 60  0000 L CNN
+F 2 "kicad-libraries:Drill" H 11050 6200 60  0001 C CNN
+F 3 "" H 11050 6200 60  0000 C CNN
+	1    11050 6200
+	1    0    0    -1  
+$EndComp
+$Comp
+L tinkerforge:DRILL U4
+U 1 1 5B86EE39
+P 10750 6200
+F 0 "U4" H 10800 6250 60  0001 C CNN
+F 1 "DRILL" H 10650 6200 60  0000 L CNN
+F 2 "kicad-libraries:Drill" H 10750 6200 60  0001 C CNN
+F 3 "" H 10750 6200 60  0000 C CNN
+	1    10750 6200
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	2100 5050 3250 5050
+Wire Wire Line
+	2950 4950 3250 4950
 $EndSCHEMATC
