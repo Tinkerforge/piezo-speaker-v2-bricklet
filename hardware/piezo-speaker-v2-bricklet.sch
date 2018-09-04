@@ -1,16 +1,15 @@
 EESchema Schematic File Version 4
-LIBS:piezo-speaker-v2-bricklet-cache
 EELAYER 26 0
 EELAYER END
 $Descr A4 11693 8268
 encoding utf-8
 Sheet 1 1
-Title ""
-Date ""
-Rev ""
-Comp ""
-Comment1 ""
-Comment2 ""
+Title "Piezo Speaker Bricklet 2.0"
+Date "2018-09-04"
+Rev "2.0"
+Comp "Tinkerforge GmbH"
+Comment1 "Licensed under CERN OHL v.1.1"
+Comment2 "Copyright (©) 2018, T.Schneidermann <tim@tinkerforge.com>"
 Comment3 ""
 Comment4 ""
 $EndDescr
@@ -985,4 +984,6 @@ Wire Wire Line
 	2100 5050 3250 5050
 Wire Wire Line
 	2950 4950 3250 4950
+Text Notes 6800 3700 0    50   ~ 0
+Copyright Tinkerforge GmbH 2018.\nThis documentation describes Open Hardware and is licensed under the\nCERN OHL v. 1.1.\nYou may redistribute and modify this documentation under the terms of the\nCERN OHL v.1.1. (http://ohwr.org/cernohl). This documentation is distributed\nWITHOUT ANY EXPRESS OR IMPLIED WARRANTY, INCLUDING OF\nMERCHANTABILITY, SATISFACTORY QUALITY AND FITNESS FOR A\nPARTICULAR PURPOSE. Please see the CERN OHL v.1.1 for applicable\nconditions\n
 $EndSCHEMATC
