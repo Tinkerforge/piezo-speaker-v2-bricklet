@@ -962,7 +962,7 @@ Wire Wire Line
 Text Notes 6800 3700 0    50   ~ 0
 Copyright Tinkerforge GmbH 2018.\nThis documentation describes Open Hardware and is licensed under the\nCERN OHL v. 1.1.\nYou may redistribute and modify this documentation under the terms of the\nCERN OHL v.1.1. (http://ohwr.org/cernohl). This documentation is distributed\nWITHOUT ANY EXPRESS OR IMPLIED WARRANTY, INCLUDING OF\nMERCHANTABILITY, SATISFACTORY QUALITY AND FITNESS FOR A\nPARTICULAR PURPOSE. Please see the CERN OHL v.1.1 for applicable\nconditions\n
 Text Notes 6750 2150 0    50   ~ 0
-VREF=1.25V\nVOUT = 1.25V(1+330/R)
+VREF=1.25V\nVOUT = 1.25V(1+R/330)
 Text Notes 6500 5800 0    50   ~ 0
 VFB=1.23V\nVOUT = 1.23V(1+120k/R)
 Text Notes 6650 5600 0    50   ~ 0
