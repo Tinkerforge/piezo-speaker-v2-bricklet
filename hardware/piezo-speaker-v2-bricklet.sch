@@ -586,7 +586,7 @@ L tinkerforge:R_PACK4 RP3
 U 1 1 5B88D33A
 P 7900 5250
 F 0 "RP3" V 7850 5100 50  0000 L CNN
-F 1 "68k" V 7950 5150 50  0000 L CNN
+F 1 "34k" V 7950 5150 50  0000 L CNN
 F 2 "4X0603" H 7900 5250 50  0001 C CNN
 F 3 "" H 7900 5250 50  0000 C CNN
 	1    7900 5250
@@ -959,15 +959,11 @@ Wire Wire Line
 	2100 6300 3250 6300
 Wire Wire Line
 	2950 4950 3250 4950
-Text Notes 6800 3700 0    50   ~ 0
+Text Notes 4700 7350 0    50   ~ 0
 Copyright Tinkerforge GmbH 2018.\nThis documentation describes Open Hardware and is licensed under the\nCERN OHL v. 1.1.\nYou may redistribute and modify this documentation under the terms of the\nCERN OHL v.1.1. (http://ohwr.org/cernohl). This documentation is distributed\nWITHOUT ANY EXPRESS OR IMPLIED WARRANTY, INCLUDING OF\nMERCHANTABILITY, SATISFACTORY QUALITY AND FITNESS FOR A\nPARTICULAR PURPOSE. Please see the CERN OHL v.1.1 for applicable\nconditions\n
 Text Notes 6750 2150 0    50   ~ 0
 VREF=1.25V\nVOUT = 1.25V(1+R/330)
-Text Notes 6500 5800 0    50   ~ 0
-VFB=1.23V\nVOUT = 1.23V(1+120k/R)
-Text Notes 6650 5600 0    50   ~ 0
-Ziel 13.3k
-Text Notes 6600 6100 0    50   ~ 0
+Text Notes 6300 5800 0    50   ~ 0
 VFB=1.23V\nVOUT = 1.23V(1+120k/R)
 Connection ~ 6000 4550
 Wire Wire Line
@@ -1042,4 +1038,8 @@ Wire Wire Line
 	2950 5050 3250 5050
 Wire Wire Line
 	2350 6100 2300 6100
+Text Notes 5500 2950 0    50   ~ 0
+LR4=1k, \nLR3=470, \nLR2=220,\nLR1=100 (ggf ersetzen durch 0)
+Text Notes 7850 6400 0    50   ~ 0
+2x68k = 34k\n\n34k\n17k\n11.33k\n8.5k
 $EndSCHEMATC
