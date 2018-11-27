@@ -1039,7 +1039,7 @@ Wire Wire Line
 Wire Wire Line
 	2350 6100 2300 6100
 Text Notes 5500 2950 0    50   ~ 0
-LR4=1k, \nLR3=470, \nLR2=220,\nLR1=100 (ggf ersetzen durch 0)
+LR1=1k, \nLR2=470, \nLR3=220,\nLR4=100 (ggf ersetzen durch 0)
 Text Notes 7850 6400 0    50   ~ 0
 2x68k = 34k\n\n34k\n17k\n11.33k\n8.5k
 $EndSCHEMATC
