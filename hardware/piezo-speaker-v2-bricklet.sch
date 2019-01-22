@@ -378,17 +378,6 @@ Wire Wire Line
 	6100 1850 6100 1950
 Wire Wire Line
 	6100 1950 6200 1950
-$Comp
-L tinkerforge:R_PACK4 RP2
-U 1 1 5B87098B
-P 6050 2300
-F 0 "RP2" V 6004 2728 50  0000 L CNN
-F 1 "1k" V 6095 2728 50  0000 L CNN
-F 2 "4X0603" H 6050 2300 50  0001 C CNN
-F 3 "" H 6050 2300 50  0000 C CNN
-	1    6050 2300
-	0    1    1    0   
-$EndComp
 Wire Wire Line
 	6100 2100 6100 1950
 Connection ~ 6100 1950
@@ -407,29 +396,29 @@ Wire Wire Line
 Connection ~ 6400 1950
 Wire Wire Line
 	6400 1950 7050 1950
-Text GLabel 6100 2650 3    39   Output ~ 0
+Text GLabel 6100 2750 3    39   Output ~ 0
 LR-1
-Text GLabel 6200 2650 3    39   Output ~ 0
+Text GLabel 6200 2750 3    39   Output ~ 0
 LR-2
-Text GLabel 6300 2650 3    39   Output ~ 0
+Text GLabel 6300 2750 3    39   Output ~ 0
 LR-3
-Text GLabel 6400 2650 3    39   Output ~ 0
+Text GLabel 6400 2750 3    39   Output ~ 0
 LR-4
 Wire Wire Line
-	6100 2650 6100 2500
+	6100 2750 6100 2600
 Wire Wire Line
-	6200 2500 6200 2650
+	6200 2600 6200 2750
 Wire Wire Line
-	6300 2650 6300 2500
+	6300 2750 6300 2600
 Wire Wire Line
-	6400 2500 6400 2650
-Text GLabel 2950 4950 0    39   Input ~ 0
+	6400 2600 6400 2750
+Text GLabel 2950 4250 0    39   Input ~ 0
 LR-1
-Text GLabel 2950 3750 0    39   Input ~ 0
+Text GLabel 2950 4350 0    39   Input ~ 0
 LR-2
-Text GLabel 2950 3850 0    39   Input ~ 0
+Text GLabel 2950 4450 0    39   Input ~ 0
 LR-3
-Text GLabel 2950 4050 0    39   Input ~ 0
+Text GLabel 2950 4550 0    39   Input ~ 0
 LR-4
 $Comp
 L tinkerforge:LMR62014X U3
@@ -440,17 +429,6 @@ F 1 "LMR62014X" H 6700 4200 60  0000 L CNN
 F 2 "SOT23-5" H 6650 4550 60  0001 C CNN
 F 3 "" H 6650 4550 60  0000 C CNN
 	1    6650 4550
-	1    0    0    -1  
-$EndComp
-$Comp
-L tinkerforge:+VSW #PWR011
-U 1 1 5B87B2EA
-P 4850 3750
-F 0 "#PWR011" H 4850 3600 50  0001 C CNN
-F 1 "+VSW" H 4865 3923 50  0000 C CNN
-F 2 "" H 4850 3750 50  0001 C CNN
-F 3 "" H 4850 3750 50  0001 C CNN
-	1    4850 3750
 	1    0    0    -1  
 $EndComp
 $Comp
@@ -475,24 +453,10 @@ F 3 "" H 5550 4500 60  0000 C CNN
 	1    5550 4500
 	1    0    0    -1  
 $EndComp
-$Comp
-L tinkerforge:INDUCT L1
-U 1 1 5B87B71A
-P 5300 4000
-F 0 "L1" V 5095 4000 50  0000 C CNN
-F 1 "FB" V 5186 4000 50  0000 C CNN
-F 2 "C0603F" H 5300 4000 60  0001 C CNN
-F 3 "" H 5300 4000 60  0000 C CNN
-	1    5300 4000
-	0    1    1    0   
-$EndComp
-Wire Wire Line
-	4850 3750 4850 4000
 Wire Wire Line
 	4850 4000 5050 4000
 Wire Wire Line
 	5050 4300 5050 4000
-Connection ~ 5050 4000
 Wire Wire Line
 	5550 4300 5550 4000
 $Comp
@@ -528,7 +492,6 @@ F 3 "" H 6000 4800 60  0000 C CNN
 	1    6000 4800
 	1    0    0    -1  
 $EndComp
-Connection ~ 5550 4000
 Wire Wire Line
 	6000 4500 6000 4550
 Wire Wire Line
@@ -590,17 +553,6 @@ F 1 "34k" V 7950 5150 50  0000 L CNN
 F 2 "4X0603" H 7900 5250 50  0001 C CNN
 F 3 "" H 7900 5250 50  0000 C CNN
 	1    7900 5250
-	0    1    1    0   
-$EndComp
-$Comp
-L tinkerforge:R_PACK4 RP4
-U 1 1 5B88D41D
-P 8350 5250
-F 0 "RP4" V 8304 5678 50  0000 L CNN
-F 1 "DNP" V 8395 5678 50  0000 L CNN
-F 2 "4X0603" H 8350 5250 50  0001 C CNN
-F 3 "" H 8350 5250 50  0000 C CNN
-	1    8350 5250
 	0    1    1    0   
 $EndComp
 $Comp
@@ -666,14 +618,11 @@ Wire Wire Line
 	8150 4950 8250 4950
 Wire Wire Line
 	8250 5050 8250 4950
-Connection ~ 8250 4950
 Connection ~ 8450 4000
 Wire Wire Line
 	9950 4000 9950 2850
 Wire Wire Line
 	9950 2850 8650 2850
-Wire Wire Line
-	8650 2850 8650 1450
 Wire Wire Line
 	8650 1450 8850 1450
 $Comp
@@ -726,10 +675,6 @@ Text GLabel 8150 5600 3    50   Output ~ 0
 SU-3
 Text GLabel 8250 5600 3    50   Output ~ 0
 SU-4
-Text GLabel 8400 5600 3    50   Output ~ 0
-SU-5
-Text GLabel 8600 5600 3    50   Output ~ 0
-SU-6
 Wire Wire Line
 	7950 5600 7950 5450
 Wire Wire Line
@@ -738,22 +683,14 @@ Wire Wire Line
 	8150 5600 8150 5450
 Wire Wire Line
 	8250 5450 8250 5600
-Wire Wire Line
-	8400 5600 8400 5450
-Wire Wire Line
-	8600 5450 8600 5600
-Text GLabel 2950 4250 0    39   Input ~ 0
+Text GLabel 2950 4950 0    39   Input ~ 0
 SU-1
-Text GLabel 2950 4350 0    39   Input ~ 0
+Text GLabel 2950 3750 0    39   Input ~ 0
 SU-2
-Text GLabel 2950 4450 0    39   Input ~ 0
+Text GLabel 2950 3850 0    39   Input ~ 0
 SU-3
-Text GLabel 2950 4550 0    39   Input ~ 0
+Text GLabel 2950 4050 0    39   Input ~ 0
 SU-4
-Text GLabel 2950 5700 0    39   Input ~ 0
-SU-5
-Text GLabel 2950 5800 0    39   Input ~ 0
-SU-6
 $Comp
 L tinkerforge:R R1
 U 1 1 5B89746E
@@ -824,39 +761,6 @@ F 3 "" H 2350 6100 60  0000 C CNN
 $EndComp
 Wire Wire Line
 	2300 6200 3250 6200
-Wire Wire Line
-	3250 5700 2950 5700
-Wire Wire Line
-	2950 5800 3250 5800
-$Comp
-L tinkerforge:B0520LW-7-F D2
-U 1 1 5B8F6B96
-P 7800 1450
-F 0 "D2" H 7800 1642 40  0000 C CNN
-F 1 "B0520LW-7-F" H 7800 1566 40  0000 C CNN
-F 2 "SOD-123" H 7800 1350 60  0001 C CNN
-F 3 "" H 7800 1450 60  0000 C CNN
-	1    7800 1450
-	1    0    0    -1  
-$EndComp
-Wire Wire Line
-	8650 1450 8000 1450
-Connection ~ 8650 1450
-Wire Wire Line
-	7600 1450 7050 1450
-Connection ~ 7050 1450
-$Comp
-L tinkerforge:B0520LW-7-F D4
-U 1 1 5B8FF6C3
-P 9750 4000
-F 0 "D4" H 9750 4192 40  0000 C CNN
-F 1 "B0520LW-7-F" H 9750 4116 40  0000 C CNN
-F 2 "SOD-123" H 9750 3900 60  0001 C CNN
-F 3 "" H 9750 4000 60  0000 C CNN
-	1    9750 4000
-	1    0    0    -1  
-$EndComp
-Connection ~ 9550 4000
 Text GLabel 6000 4500 1    39   Output ~ 0
 SU-SHDN
 $Comp
@@ -874,27 +778,10 @@ Wire Wire Line
 	9000 4700 9000 5250
 Wire Wire Line
 	9550 4700 9550 5250
-Text GLabel 2950 6400 0    39   Input ~ 0
+Text GLabel 2950 5700 0    39   Input ~ 0
 SU-SHDN
 Wire Wire Line
-	8250 4950 8550 4950
-Wire Wire Line
-	8600 5050 8700 5050
-Wire Wire Line
-	8400 5050 8500 5050
-Wire Wire Line
-	8500 5450 8550 5450
-Wire Wire Line
-	8550 5450 8550 4950
-Connection ~ 8550 4950
-Wire Wire Line
-	8800 4950 8800 5450
-Wire Wire Line
-	8800 5450 8700 5450
-Wire Wire Line
-	8550 4950 8800 4950
-Wire Wire Line
-	3250 6400 2950 6400
+	3250 5700 2950 5700
 NoConn ~ 3250 5900
 NoConn ~ 3250 6000
 NoConn ~ 3250 6100
@@ -1038,8 +925,79 @@ Wire Wire Line
 	2950 5050 3250 5050
 Wire Wire Line
 	2350 6100 2300 6100
-Text Notes 5500 2950 0    50   ~ 0
+Text Notes 5500 3050 0    50   ~ 0
 LR1=1k, \nLR2=470, \nLR3=220,\nLR4=100 (ggf ersetzen durch 0)
 Text Notes 7850 6400 0    50   ~ 0
 2x68k = 34k\n\n34k\n17k\n11.33k\n8.5k
+Wire Wire Line
+	8650 1450 8650 2850
+Wire Wire Line
+	9950 4000 9550 4000
+Connection ~ 9550 4000
+Wire Wire Line
+	4850 3500 7850 3500
+Wire Wire Line
+	7850 3500 7850 1450
+Wire Wire Line
+	7850 1450 7050 1450
+Wire Wire Line
+	4850 3500 4850 4000
+Connection ~ 7050 1450
+Connection ~ 5050 4000
+Connection ~ 5550 4000
+$Comp
+L tinkerforge:INDUCT L1
+U 1 1 5B87B71A
+P 5300 4000
+F 0 "L1" V 5095 4000 50  0000 C CNN
+F 1 "FB" V 5186 4000 50  0000 C CNN
+F 2 "C0603F" H 5300 4000 60  0001 C CNN
+F 3 "" H 5300 4000 60  0000 C CNN
+	1    5300 4000
+	0    1    1    0   
+$EndComp
+$Comp
+L tinkerforge:R R102
+U 1 1 5C41B047
+P 6100 2350
+F 0 "R102" V 6100 2200 50  0000 L CNN
+F 1 "1k" V 6150 2550 50  0000 L CNN
+F 2 "R0603F" H 6100 2350 60  0001 C CNN
+F 3 "" H 6100 2350 60  0000 C CNN
+	1    6100 2350
+	1    0    0    -1  
+$EndComp
+$Comp
+L tinkerforge:R R103
+U 1 1 5C41EEA7
+P 6200 2350
+F 0 "R103" V 6200 2200 50  0000 L CNN
+F 1 "470" V 6250 2500 50  0000 L CNN
+F 2 "R0603F" H 6200 2350 60  0001 C CNN
+F 3 "" H 6200 2350 60  0000 C CNN
+	1    6200 2350
+	1    0    0    -1  
+$EndComp
+$Comp
+L tinkerforge:R R104
+U 1 1 5C41EEFB
+P 6300 2350
+F 0 "R104" V 6300 2200 50  0000 L CNN
+F 1 "220" V 6350 2500 50  0000 L CNN
+F 2 "R0603F" H 6300 2350 60  0001 C CNN
+F 3 "" H 6300 2350 60  0000 C CNN
+	1    6300 2350
+	1    0    0    -1  
+$EndComp
+$Comp
+L tinkerforge:R R105
+U 1 1 5C41EF51
+P 6400 2350
+F 0 "R105" V 6400 2200 50  0000 L CNN
+F 1 "100" V 6450 2500 50  0000 L CNN
+F 2 "R0603F" H 6400 2350 60  0001 C CNN
+F 3 "" H 6400 2350 60  0000 C CNN
+	1    6400 2350
+	1    0    0    -1  
+$EndComp
 $EndSCHEMATC
