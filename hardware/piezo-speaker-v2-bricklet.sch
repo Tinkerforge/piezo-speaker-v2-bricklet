@@ -549,7 +549,7 @@ L tinkerforge:R_PACK4 RP3
 U 1 1 5B88D33A
 P 7900 5250
 F 0 "RP3" V 7850 5100 50  0000 L CNN
-F 1 "34k" V 7950 5150 50  0000 L CNN
+F 1 "33k" V 7950 5100 50  0000 L CNN
 F 2 "4X0603" H 7900 5250 50  0001 C CNN
 F 3 "" H 7900 5250 50  0000 C CNN
 	1    7900 5250
@@ -928,7 +928,7 @@ Wire Wire Line
 Text Notes 5500 3050 0    50   ~ 0
 LR1=1k, \nLR2=470, \nLR3=220,\nLR4=100 (ggf ersetzen durch 0)
 Text Notes 7850 6400 0    50   ~ 0
-2x68k = 34k\n\n34k\n17k\n11.33k\n8.5k
+33k\n16.5k\n11k\n8.25k
 Wire Wire Line
 	8650 1450 8650 2850
 Wire Wire Line
