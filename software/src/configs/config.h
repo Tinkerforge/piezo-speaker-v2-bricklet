@@ -33,6 +33,8 @@
 #define FIRMWARE_VERSION_MINOR 0
 #define FIRMWARE_VERSION_REVISION 0
 
+#define CCU4_PWM_PRESCALER XMC_CCU4_SLICE_PRESCALER_64
+
 #include "config_custom_bootloader.h"
 
 #endif

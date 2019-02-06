@@ -24,18 +24,77 @@
 #include "bricklib2/utility/communication_callback.h"
 #include "bricklib2/protocols/tfp/tfp.h"
 
+#include "speaker.h"
+
 BootloaderHandleMessageResponse handle_message(const void *message, void *response) {
 	switch(tfp_get_fid_from_message(message)) {
-
+		case FID_BEEP: return beep(message);
+		case FID_MORSE_CODE: return morse_code(message);
 		default: return HANDLE_MESSAGE_RESPONSE_NOT_SUPPORTED;
 	}
 }
 
 
+BootloaderHandleMessageResponse beep(const Beep *data) {
+	speaker.beep_start     = true;
+	speaker.beep_duration  = data->duration;
+	speaker.beep_frequency = data->frequency;
+	speaker.beep_volume    = data->volume;
+
+	return HANDLE_MESSAGE_RESPONSE_EMPTY;
+}
+
+BootloaderHandleMessageResponse morse_code(const MorseCode *data) {
+
+	return HANDLE_MESSAGE_RESPONSE_EMPTY;
+}
 
 
+bool handle_beep_finished_callback(void) {
+	static bool is_buffered = false;
+	static BeepFinished_Callback cb;
 
+	if(!is_buffered) {
+		if(speaker.beep_done) {
+			tfp_make_default_header(&cb.header, bootloader_get_uid(), sizeof(BeepFinished_Callback), FID_CALLBACK_BEEP_FINISHED);
+			speaker.beep_done = false;
+		} else {
+			return false;
+		}
+	}
 
+	if(bootloader_spitfp_is_send_possible(&bootloader_status.st)) {
+		bootloader_spitfp_send_ack_and_message(&bootloader_status, (uint8_t*)&cb, sizeof(BeepFinished_Callback));
+		is_buffered = false;
+		return true;
+	} else {
+		is_buffered = true;
+	}
+
+	return false;
+}
+
+bool handle_morse_code_finished_callback(void) {
+	static bool is_buffered = false;
+	static MorseCodeFinished_Callback cb;
+
+	if(!is_buffered) {
+		tfp_make_default_header(&cb.header, bootloader_get_uid(), sizeof(MorseCodeFinished_Callback), FID_CALLBACK_MORSE_CODE_FINISHED);
+		// TODO: Implement MorseCodeFinished callback handling
+
+		return false;
+	}
+
+	if(bootloader_spitfp_is_send_possible(&bootloader_status.st)) {
+		bootloader_spitfp_send_ack_and_message(&bootloader_status, (uint8_t*)&cb, sizeof(MorseCodeFinished_Callback));
+		is_buffered = false;
+		return true;
+	} else {
+		is_buffered = true;
+	}
+
+	return false;
+}
 
 void communication_tick(void) {
 	communication_callback_tick();

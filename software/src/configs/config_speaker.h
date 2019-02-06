@@ -1,5 +1,5 @@
 /* piezo-speaker-v2-bricklet
- * Copyright (C) 2018 Olaf Lüke <olaf@tinkerforge.com>
+ * Copyright (C) 2018-2019 Olaf Lüke <olaf@tinkerforge.com>
  *
  * config_speaker.h: Configuration for the speaker
  *
@@ -24,18 +24,19 @@
 
 #include "xmc_gpio.h"
 
-#define SPEAKER_LR0_PIN  P1_0
-#define SPEAKER_LR1_PIN  P0_5
-#define SPEAKER_LR2_PIN  P0_6
-#define SPEAKER_LR3_PIN  P0_8
+#define SPEAKER_LR0_PIN   P0_12
+#define SPEAKER_LR1_PIN   P0_13
+#define SPEAKER_LR2_PIN   P0_14
+#define SPEAKER_LR3_PIN   P0_15
 
-#define SPEAKER_SU0_PIN  P0_12
-#define SPEAKER_SU1_PIN  P0_13
-#define SPEAKER_SU2_PIN  P0_14
-#define SPEAKER_SU3_PIN  P0_15
+#define SPEAKER_SU0_PIN   P1_0
+#define SPEAKER_SU1_PIN   P0_5
+#define SPEAKER_SU2_PIN   P0_6
+#define SPEAKER_SU3_PIN   P0_8
 
-#define SPEAKER_SUS_PIN  P2_11 // SU shutdown
+#define SPEAKER_SUS_PIN   P2_0 // SU shutdown
 
-#define SPEAKER_PWM_PIN  P1_1
+#define SPEAKER_PWM_PIN   P1_1
+#define SPEAKER_PWM_SLICE 1
 
 #endif

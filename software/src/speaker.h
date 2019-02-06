@@ -22,8 +22,16 @@
 #ifndef SPEAKER_H
 #define SPEAKER_H
 
-typedef struct {
+#include <stdint.h>
+#include <stdbool.h>
 
+typedef struct {
+    bool beep_start;
+    uint32_t beep_start_time;
+    uint32_t beep_duration;
+    uint16_t beep_frequency;
+    uint8_t  beep_volume;
+    bool beep_done;
 } Speaker;
 
 extern Speaker speaker;

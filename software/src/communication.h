@@ -34,6 +34,9 @@ void communication_tick(void);
 void communication_init(void);
 
 // Constants
+#define PIEZO_SPEAKER_V2_BEEP_DURATION_OFF 0
+#define PIEZO_SPEAKER_V2_BEEP_DURATION_INFINITE 4294967295
+
 #define PIEZO_SPEAKER_V2_BOOTLOADER_MODE_BOOTLOADER 0
 #define PIEZO_SPEAKER_V2_BOOTLOADER_MODE_FIRMWARE 1
 #define PIEZO_SPEAKER_V2_BOOTLOADER_MODE_BOOTLOADER_WAIT_FOR_REBOOT 2
@@ -53,19 +56,48 @@ void communication_init(void);
 #define PIEZO_SPEAKER_V2_STATUS_LED_CONFIG_SHOW_STATUS 3
 
 // Function and callback IDs and structs
+#define FID_BEEP 1
+#define FID_MORSE_CODE 2
 
+#define FID_CALLBACK_BEEP_FINISHED 3
+#define FID_CALLBACK_MORSE_CODE_FINISHED 4
 
+typedef struct {
+	TFPMessageHeader header;
+	uint32_t duration;
+	uint16_t frequency;
+	uint8_t volume;
+} __attribute__((__packed__)) Beep;
+
+typedef struct {
+	TFPMessageHeader header;
+	char morse[60];
+	uint16_t frequency;
+	uint8_t volume;
+} __attribute__((__packed__)) MorseCode;
+
+typedef struct {
+	TFPMessageHeader header;
+} __attribute__((__packed__)) BeepFinished_Callback;
+
+typedef struct {
+	TFPMessageHeader header;
+} __attribute__((__packed__)) MorseCodeFinished_Callback;
 
 
 // Function prototypes
-
+BootloaderHandleMessageResponse beep(const Beep *data);
+BootloaderHandleMessageResponse morse_code(const MorseCode *data);
 
 // Callbacks
-
+bool handle_beep_finished_callback(void);
+bool handle_morse_code_finished_callback(void);
 
 #define COMMUNICATION_CALLBACK_TICK_WAIT_MS 1
-#define COMMUNICATION_CALLBACK_HANDLER_NUM 0
+#define COMMUNICATION_CALLBACK_HANDLER_NUM 2
 #define COMMUNICATION_CALLBACK_LIST_INIT \
+	handle_beep_finished_callback, \
+	handle_morse_code_finished_callback, \
 
 
 #endif
