@@ -60,6 +60,9 @@ SpeakerPin speaker_pins[SPEAKER_PIN_NUM] = {
 
 Speaker speaker;
 
+// Volume bitmask for 11 different volume levels:
+// bit 8          | bit 7 | bit 6 | bit 5 | bit 4 | bit 3 | bit 2 | bit 1 | bit 0
+// Enable Step-Up | SU3   | SU2   | SU1   | SU0   | LR3   | LR2   | LR1   | LR0
 const uint16_t speaker_volume[11] = {
 	0b011110000, // 1.55V LR
 	0b011110111, // 1.86V LR
