@@ -27,6 +27,8 @@
 #include "bricklib2/hal/ccu4_pwm/ccu4_pwm.h"
 #include "bricklib2/hal/system_timer/system_timer.h"
 
+#include "communication.h"
+
 #define SPEAKER_PIN_NUM 8
 
 #define SPEAKER_PIN_VALUE_LOW   0
@@ -86,37 +88,42 @@ void speaker_set_pin(uint8_t pin, uint8_t value) {
 
 }
 
-void speaker_set_frequency(uint32_t frequency) {
+void speaker_set_frequency(const uint32_t frequency) {
 	if(frequency == 0) {
 		XMC_GPIO_Init(SPEAKER_PWM_PIN, &speaker_config_low);
+		speaker.pwm_is_init = false;
 	} else {
 		uint32_t period = MIN(1000000/frequency, UINT16_MAX);
-		ccu4_pwm_init(SPEAKER_PWM_PIN, SPEAKER_PWM_SLICE, period);
+		if(speaker.pwm_is_init) {
+			ccu4_pwm_set_period(SPEAKER_PWM_SLICE, period);
+		} else {
+			ccu4_pwm_init(SPEAKER_PWM_PIN, SPEAKER_PWM_SLICE, period);
+			speaker.pwm_is_init = true;
+		}
 		ccu4_pwm_set_duty_cycle(SPEAKER_PWM_SLICE, period/2);
 	}
 }
 
 void speaker_update_volume(void) {
-		uint16_t volume_bitmask = speaker_volume[MIN(10, speaker.beep_volume)];
-		for(uint8_t i = 0; i < 8; i++) {
-			if(volume_bitmask & (1 << i)) {
-				speaker_set_pin(i, SPEAKER_PIN_VALUE_FLOAT);
-			} else {
-				speaker_set_pin(i, SPEAKER_PIN_VALUE_LOW);
-			}
-		}
-
-		if(volume_bitmask & (1 << 8)) {
-			XMC_GPIO_SetOutputHigh(SPEAKER_SUS_PIN);
+	uint16_t volume_bitmask = speaker_volume[MIN(10, speaker.volume)];
+	for(uint8_t i = 0; i < 8; i++) {
+		if(volume_bitmask & (1 << i)) {
+			speaker_set_pin(i, SPEAKER_PIN_VALUE_FLOAT);
 		} else {
-			XMC_GPIO_SetOutputLow(SPEAKER_SUS_PIN);
+			speaker_set_pin(i, SPEAKER_PIN_VALUE_LOW);
 		}
+	}
+
+	if(volume_bitmask & (1 << 8)) {
+		XMC_GPIO_SetOutputHigh(SPEAKER_SUS_PIN);
+	} else {
+		XMC_GPIO_SetOutputLow(SPEAKER_SUS_PIN);
+	}
 }
 
 void speaker_init(void) {
 	memset(&speaker, 0, sizeof(Speaker));
 
-	speaker.beep_volume = 0;
 	speaker.beep_frequency = 1000;
 	speaker.beep_duration = 1000;
 
@@ -128,16 +135,74 @@ void speaker_init(void) {
 }
 
 void speaker_tick(void) {
+	if((speaker.beep_start_time != 0) && system_timer_is_time_elapsed_ms(speaker.beep_start_time, speaker.beep_duration)) {
+		if(speaker.beep_duration != PIEZO_SPEAKER_V2_BEEP_DURATION_INFINITE) {
+			speaker_set_frequency(0);
+			speaker.beep_start_time = 0;
+			speaker.beep_done = true;
+		}
+	}
+
+	if((speaker.alarm_start_time != 0) && system_timer_is_time_elapsed_ms(speaker.alarm_start_time, speaker.alarm_duration)) {
+		if(speaker.alarm_duration != PIEZO_SPEAKER_V2_ALARM_DURATION_INFINITE) {
+			speaker_set_frequency(0);
+			speaker.alarm_start_time = 0;
+			speaker.alarm_done = true;
+		}
+	}
+
+	if(speaker.alarm_start) {
+		if(speaker.beep_start_time != 0) {
+			speaker.beep_start_time = 0;
+			speaker.beep_done = true;
+		}
+
+		speaker_update_volume();
+
+		speaker.alarm_start = false;
+		speaker.alarm_start_time = system_timer_get_ms();
+		speaker.alarm_last_time = system_timer_get_ms();
+
+		speaker.alarm_current_frequency = speaker.alarm_start_frequency;
+		speaker.alarm_direction = 1;
+		if(speaker.alarm_duration != 0) {
+			speaker_set_frequency(speaker.alarm_current_frequency);
+		} else {
+			speaker_set_frequency(0);
+			speaker.alarm_start_time = 0;
+		}
+	}
+
+	if(speaker.alarm_start_time != 0) {
+		if(system_timer_is_time_elapsed_ms(speaker.alarm_last_time, speaker.alarm_step_delay)) {
+			speaker.alarm_last_time += speaker.alarm_step_delay;
+			speaker.alarm_current_frequency += speaker.alarm_direction*speaker.alarm_step_size;
+			if((speaker.alarm_current_frequency > speaker.alarm_end_frequency) || 
+			   (speaker.alarm_current_frequency < speaker.alarm_start_frequency)) {
+				speaker.alarm_direction *= -1;
+				speaker.alarm_current_frequency += speaker.alarm_direction*speaker.alarm_step_size;
+			}
+
+			speaker_set_frequency(speaker.alarm_current_frequency);
+		}
+	}
+	
 	if(speaker.beep_start) {
+		if(speaker.alarm_start_time != 0) {
+			speaker.alarm_start_time = 0;
+			speaker.alarm_done = true;
+		}
+
 		speaker_update_volume();
 
 		speaker.beep_start = false;
-		speaker.beep_start_time = system_timer_get_ms();
-		speaker_set_frequency(speaker.beep_frequency);
+		if(speaker.beep_duration != 0) {
+			speaker.beep_start_time = system_timer_get_ms();
+			speaker_set_frequency(speaker.beep_frequency);
+		} else {
+			speaker.beep_start_time = 0;
+			speaker_set_frequency(0);
+		}
 	}
-	if((speaker.beep_start_time != 0) && system_timer_is_time_elapsed_ms(speaker.beep_start_time, speaker.beep_duration)) {
-		speaker_set_frequency(0);
-		speaker.beep_start_time = 0;
-		speaker.beep_done = true;
-	}
+
 }

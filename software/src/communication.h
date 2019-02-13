@@ -1,5 +1,5 @@
 /* piezo-speaker-v2-bricklet
- * Copyright (C) 2018 Olaf Lüke <olaf@tinkerforge.com>
+ * Copyright (C) 2018-2019 Olaf Lüke <olaf@tinkerforge.com>
  *
  * communication.h: TFP protocol message handling
  *
@@ -37,6 +37,9 @@ void communication_init(void);
 #define PIEZO_SPEAKER_V2_BEEP_DURATION_OFF 0
 #define PIEZO_SPEAKER_V2_BEEP_DURATION_INFINITE 4294967295
 
+#define PIEZO_SPEAKER_V2_ALARM_DURATION_OFF 0
+#define PIEZO_SPEAKER_V2_ALARM_DURATION_INFINITE 4294967295
+
 #define PIEZO_SPEAKER_V2_BOOTLOADER_MODE_BOOTLOADER 0
 #define PIEZO_SPEAKER_V2_BOOTLOADER_MODE_FIRMWARE 1
 #define PIEZO_SPEAKER_V2_BOOTLOADER_MODE_BOOTLOADER_WAIT_FOR_REBOOT 2
@@ -56,25 +59,70 @@ void communication_init(void);
 #define PIEZO_SPEAKER_V2_STATUS_LED_CONFIG_SHOW_STATUS 3
 
 // Function and callback IDs and structs
-#define FID_BEEP 1
-#define FID_MORSE_CODE 2
+#define FID_SET_BEEP 1
+#define FID_GET_BEEP 2
+#define FID_SET_ALARM 3
+#define FID_GET_ALARM 4
+#define FID_UPDATE_VOLUME 5
+#define FID_UPDATE_FREQUENCY 6
 
-#define FID_CALLBACK_BEEP_FINISHED 3
-#define FID_CALLBACK_MORSE_CODE_FINISHED 4
+#define FID_CALLBACK_BEEP_FINISHED 7
+#define FID_CALLBACK_ALAM_FINISHED 8
 
 typedef struct {
 	TFPMessageHeader header;
+	uint16_t frequency;
+	uint8_t volume;
 	uint32_t duration;
-	uint16_t frequency;
-	uint8_t volume;
-} __attribute__((__packed__)) Beep;
+} __attribute__((__packed__)) SetBeep;
 
 typedef struct {
 	TFPMessageHeader header;
-	char morse[60];
+} __attribute__((__packed__)) GetBeep;
+
+typedef struct {
+	TFPMessageHeader header;
 	uint16_t frequency;
 	uint8_t volume;
-} __attribute__((__packed__)) MorseCode;
+	uint32_t duration;
+	uint32_t duration_remaining;
+} __attribute__((__packed__)) GetBeep_Response;
+
+typedef struct {
+	TFPMessageHeader header;
+	uint16_t start_frequency;
+	uint16_t end_frequency;
+	uint16_t step_size;
+	uint16_t step_delay;
+	uint8_t volume;
+	uint32_t duration;
+} __attribute__((__packed__)) SetAlarm;
+
+typedef struct {
+	TFPMessageHeader header;
+} __attribute__((__packed__)) GetAlarm;
+
+typedef struct {
+	TFPMessageHeader header;
+	uint16_t start_frequency;
+	uint16_t end_frequency;
+	uint16_t step_size;
+	uint16_t step_delay;
+	uint8_t volume;
+	uint32_t duration;
+	uint32_t duration_remaining;
+	uint16_t current_frequency;
+} __attribute__((__packed__)) GetAlarm_Response;
+
+typedef struct {
+	TFPMessageHeader header;
+	uint8_t volume;
+} __attribute__((__packed__)) UpdateVolume;
+
+typedef struct {
+	TFPMessageHeader header;
+	uint16_t frequency;
+} __attribute__((__packed__)) UpdateFrequency;
 
 typedef struct {
 	TFPMessageHeader header;
@@ -82,22 +130,26 @@ typedef struct {
 
 typedef struct {
 	TFPMessageHeader header;
-} __attribute__((__packed__)) MorseCodeFinished_Callback;
+} __attribute__((__packed__)) AlamFinished_Callback;
 
 
 // Function prototypes
-BootloaderHandleMessageResponse beep(const Beep *data);
-BootloaderHandleMessageResponse morse_code(const MorseCode *data);
+BootloaderHandleMessageResponse set_beep(const SetBeep *data);
+BootloaderHandleMessageResponse get_beep(const GetBeep *data, GetBeep_Response *response);
+BootloaderHandleMessageResponse set_alarm(const SetAlarm *data);
+BootloaderHandleMessageResponse get_alarm(const GetAlarm *data, GetAlarm_Response *response);
+BootloaderHandleMessageResponse update_volume(const UpdateVolume *data);
+BootloaderHandleMessageResponse update_frequency(const UpdateFrequency *data);
 
 // Callbacks
 bool handle_beep_finished_callback(void);
-bool handle_morse_code_finished_callback(void);
+bool handle_alam_finished_callback(void);
 
 #define COMMUNICATION_CALLBACK_TICK_WAIT_MS 1
 #define COMMUNICATION_CALLBACK_HANDLER_NUM 2
 #define COMMUNICATION_CALLBACK_LIST_INIT \
 	handle_beep_finished_callback, \
-	handle_morse_code_finished_callback, \
+	handle_alam_finished_callback, \
 
 
 #endif

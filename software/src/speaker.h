@@ -26,16 +26,33 @@
 #include <stdbool.h>
 
 typedef struct {
+    uint8_t volume;
+
     bool beep_start;
     uint32_t beep_start_time;
-    uint32_t beep_duration;
     uint16_t beep_frequency;
-    uint8_t  beep_volume;
+    uint32_t beep_duration;
     bool beep_done;
+
+    bool alarm_start;
+    uint32_t alarm_start_time;
+    uint32_t alarm_last_time;
+    int8_t alarm_direction;
+    uint16_t alarm_start_frequency;
+    uint16_t alarm_end_frequency;
+    uint16_t alarm_step_size;
+    uint16_t alarm_step_delay;
+    uint32_t alarm_duration;
+    uint16_t alarm_current_frequency;
+    bool alarm_done;
+
+    bool pwm_is_init;
 } Speaker;
 
 extern Speaker speaker;
 
+void speaker_set_frequency(const uint32_t frequency);
+void speaker_update_volume(void);
 void speaker_init(void);
 void speaker_tick(void);
 
