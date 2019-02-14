@@ -148,7 +148,7 @@ BootloaderHandleMessageResponse update_frequency(const UpdateFrequency *data) {
 	if(!speaker.alarm_start && (speaker.alarm_duration == 0)) {
 		// Only update if beep is ongoing
 		speaker.beep_frequency = data->frequency;
-		if(speaker.beep_duration != 0) {
+		if(speaker.beep_start_time != 0) {
 			speaker_set_frequency(data->frequency);
 		}
 	}
