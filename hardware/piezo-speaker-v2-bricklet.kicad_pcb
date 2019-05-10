@@ -2,7 +2,7 @@
 
   (general
     (thickness 1.6)
-    (drawings 12)
+    (drawings 13)
     (tracks 438)
     (zones 0)
     (modules 44)
@@ -7075,6 +7075,7 @@
       (clearance 0.65024))
   )
 
+  (gr_circle (center 155 100) (end 167 100) (layer Dwgs.User) (width 0.2))
   (gr_line (start 132.5 77.5) (end 132.5 127.5) (angle 90) (layer Edge.Cuts) (width 0.15))
   (gr_line (start 175 75) (end 135 75) (angle 90) (layer Edge.Cuts) (width 0.15))
   (gr_line (start 177.5 127.5) (end 177.5 77.5) (angle 90) (layer Edge.Cuts) (width 0.15))
