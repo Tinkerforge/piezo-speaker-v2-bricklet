@@ -118,7 +118,7 @@ BootloaderHandleMessageResponse get_alarm(const GetAlarm *data, GetAlarm_Respons
 	response->duration          = speaker.alarm_duration;
 	response->current_frequency = speaker.alarm_current_frequency;
 
-	uint32_t alarm_duration = system_timer_get_ms() - speaker.alarm_start;
+	uint32_t alarm_duration = system_timer_get_ms() - speaker.alarm_start_time;
 	if(speaker.alarm_done || (alarm_duration >= speaker.alarm_duration)) {
 		response->duration_remaining = 0;
 	} else {
