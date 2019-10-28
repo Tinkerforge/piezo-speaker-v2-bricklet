@@ -4,5 +4,5 @@
 2019-05-29: 2.0.1 (ce5fced)
 - Fix SPITFP IRQ race condition with other higher prio IRQs (through bricklib2)
 
-2019-10-28: 2.0.2 (TBD)
+2019-10-28: 2.0.2 (8d48192)
 - Fix remaining beep duration calculation
