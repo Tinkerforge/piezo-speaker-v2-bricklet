@@ -64,7 +64,7 @@ BootloaderHandleMessageResponse get_beep(const GetBeep *data, GetBeep_Response *
 	response->volume        = speaker.volume;
 	response->duration      = speaker.beep_duration;
 
-	uint32_t beep_duration = system_timer_get_ms() - speaker.beep_start;
+	uint32_t beep_duration = system_timer_get_ms() - speaker.beep_start_time;
 	if(speaker.beep_done || (beep_duration >= speaker.beep_duration)) {
 		response->duration_remaining = 0;
 	} else {
