@@ -18,5 +18,5 @@ if __name__ == "__main__":
     # 10 seconds of loud annoying fast alarm
     ps.set_alarm(800, 2000, 10, 1, 10, 10000)
 
-    raw_input("Press key to exit\n") # Use input() in Python 3
+    input("Press key to exit\n") # Use raw_input() in Python 2
     ipcon.disconnect()

@@ -18,5 +18,5 @@ if __name__ == "__main__":
     # Make 2 second beep with a frequency of 1kHz
     ps.set_beep(1000, 0, 2000)
 
-    raw_input("Press key to exit\n") # Use input() in Python 3
+    input("Press key to exit\n") # Use raw_input() in Python 2
     ipcon.disconnect()
