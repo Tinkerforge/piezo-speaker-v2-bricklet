@@ -14,7 +14,7 @@ fn main() -> Result<(), Box<dyn Error>> {
                                           // Don't use device before ipcon is connected.
 
     // 10 seconds of loud annoying fast alarm
-    ps.set_alarm(800, 2000, 10, 1, 10, 10000);
+    ps.set_alarm(800, 2000, 10, 1, 10, 10000).recv()?;
 
     println!("Press enter to exit.");
     let mut _input = String::new();
