@@ -11,10 +11,8 @@ void example_setup(TF_HalContext *hal) {
 	// Create device object
 	check(tf_piezo_speaker_v2_create(&ps, UID, hal), "create device object");
 
-
 	// Make 2 second beep with a frequency of 1kHz
 	check(tf_piezo_speaker_v2_set_beep(&ps, 1000, 0, 2000), "call set_beep");
-
 }
 
 void example_loop(TF_HalContext *hal) {

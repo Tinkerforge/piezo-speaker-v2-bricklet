@@ -11,11 +11,9 @@ void example_setup(TF_HalContext *hal) {
 	// Create device object
 	check(tf_piezo_speaker_v2_create(&ps, UID, hal), "create device object");
 
-
 	// 10 seconds of loud annoying fast alarm
 	check(tf_piezo_speaker_v2_set_alarm(&ps, 800, 2000, 10, 1, 10,
 	                                    10000), "call set_alarm");
-
 }
 
 void example_loop(TF_HalContext *hal) {
